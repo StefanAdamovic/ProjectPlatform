@@ -16,12 +16,17 @@ Added User
 
 Marko turn
 
-import project
+import clash
 
+<<<<<<< HEAD
 jos nesto dodao
 
 ovo sam poslednje dodao!
 
+=======
+Project Quantox
+>>>>>>> branch 'master' of https://github.com/StefanAdamovic/ProjectPlatform.git
 
+Stean
 </body>
 </html>
