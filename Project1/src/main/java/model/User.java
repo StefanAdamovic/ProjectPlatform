@@ -44,8 +44,7 @@ public abstract class User {
 
 	public User(String email, String password, String userName) {
 		super();
-		numOfUsers++;
-		this.id = numOfUsers;
+		this.id = ++numOfUsers;
 		this.email = email;
 		this.password = password;
 		this.userName = userName;
