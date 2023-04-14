@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+body {
+	height: 100vh;
+}
+
+.formChecker {
+	height: 100%;
+}
+
+.nav-pills {
+	margin: 0px;
+}
