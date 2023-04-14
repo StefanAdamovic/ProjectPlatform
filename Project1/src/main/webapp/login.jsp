@@ -30,8 +30,6 @@
 
 		<div class="container col-sm-12 col-md-8 col-lg-4 m-1">
 
-
-
 			<!-- Pills navs -->
 			<ul class="nav nav-pills nav-justified mb-3 ml-0" id="ex1"
 				role="tablist">
