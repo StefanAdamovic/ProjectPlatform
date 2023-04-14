@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@  page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,13 +10,15 @@
 
 Start of project: Platform wiht Marko
 
-Test 1
+
 
 Added User
 
 Marko turn
 
 import project
+
+jos nesto dodao
 
 
 </body>
