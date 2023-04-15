@@ -7,65 +7,62 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import databases.UserDataBase;
-
+import validators.PasswordValidator;
+import validators.UserNameValidator;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 
 	public Login() {
 		super();
 
 	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		String action = request.getParameter("action");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
 		String errorMsg = "";
 
-		if (action != null) {
-			/////////////////// LOGIN  //////////////////////
-			if (action.equals("login")) {
-				if (username != null && !username.isEmpty() && password != null && !password.isEmpty() ) {
+		if (action == null) {
+			errorMsg += "Action Error!";
+			request.setAttribute("errorMsg", errorMsg);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 
-					if( UserDataBase.getUsers().stream().anyMatch(user -> user.getUserName().equals(username) && user.getPassword().equals(password)) ) {
-						request.setAttribute("successMsg", "Log in success!");
-						request.getRequestDispatcher("index.jsp").forward(request, response);
-					}else {
-						errorMsg += "* No user with entered username and password!";
-						request.setAttribute("errorMsg", errorMsg);
-						request.getRequestDispatcher("login.jsp").forward(request, response);
-					}
+		if (!action.equals("login")) {
+			errorMsg += "Action Error!";
+			request.setAttribute("errorMsg", errorMsg);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 
-				}else {
-					errorMsg += "* Must login with both username and password!";
-					request.setAttribute("errorMsg", errorMsg);
-					request.getRequestDispatcher("login.jsp").forward(request, response);
-				}
+		if (!UserNameValidator.checkUserName(username) && !PasswordValidator.checkPassword(password)) {
+			errorMsg += "* Must login with both username and password!";
+			request.setAttribute("errorMsg", errorMsg);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 
+		if (!UserDataBase.isRegistered(username, password)) {
+			errorMsg += "* No user with entered username and password!";
+			request.setAttribute("errorMsg", errorMsg);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 
-
-			}else{
-				errorMsg += "Action Error!";
-				request.setAttribute("errorMsg", errorMsg);
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-		}	
+		request.setAttribute("successMsg", "Log in success!");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		/////////////////// SIGNUP  ////////////////////	
+		/////////////////// SIGNUP ////////////////////
 		String action = request.getParameter("action");
-		
+
 		String name = request.getParameter("registerName");
 		String username = request.getParameter("registerUsername");
 		String email = request.getParameter("registerEmail");
@@ -73,30 +70,30 @@ public class Login extends HttpServlet {
 		String repeatPassword = request.getParameter("registerPasswordRepeat");
 
 		String signUpErrorMsg = "";
-		
-		if(action != null) {
-			if(action.equals("signUp")) {
-				if( name != null && !name.isEmpty() && username != null && !username.isEmpty() && email != null && !email.isEmpty() &&
-					password != null && !password.isEmpty() && repeatPassword !=null && !repeatPassword.isEmpty() ) {
+
+		if (action != null) {
+			if (action.equals("signUp")) {
+				if (name != null && !name.isEmpty() && username != null && !username.isEmpty() && email != null
+						&& !email.isEmpty() && password != null && !password.isEmpty() && repeatPassword != null
+						&& !repeatPassword.isEmpty()) {
 					if (password.equals(repeatPassword)) {
 						UserDataBase.addUser(email, password, username);
-					    request.setAttribute("signUpSuccess", "Successfully registered!");
-					    request.getRequestDispatcher("login.jsp").forward(request, response);
-							
-						}else {
-							signUpErrorMsg += "* Password and PasswordRetype doesnt match!";
-							request.setAttribute("signUpErrorMsg", signUpErrorMsg);
-							request.getRequestDispatcher("login.jsp").forward(request, response);
-						}
-						
-					
-				}else {
+						request.setAttribute("signUpSuccess", "Successfully registered!");
+						request.getRequestDispatcher("login.jsp").forward(request, response);
+
+					} else {
+						signUpErrorMsg += "* Password and PasswordRetype doesnt match!";
+						request.setAttribute("signUpErrorMsg", signUpErrorMsg);
+						request.getRequestDispatcher("login.jsp").forward(request, response);
+					}
+
+				} else {
 					signUpErrorMsg += "* Must input all fields!";
 					request.setAttribute("signUpErrorMsg", signUpErrorMsg);
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 				}
 			}
-		}else {
+		} else {
 			signUpErrorMsg += "* Action ERROR!";
 			request.setAttribute("signUpErrorMsg", signUpErrorMsg);
 			request.getRequestDispatcher("login.jsp").forward(request, response);

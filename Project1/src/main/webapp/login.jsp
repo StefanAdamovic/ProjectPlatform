@@ -95,7 +95,7 @@
 					aria-labelledby="tab-register">
 					
 					<!-- ---------- REGISTER FORM ---------------->
-					<form method="post" action="login">
+					<form method="get" action="login">
 
 						<!-- Name input -->
 						<div class="form-outline mb-4">
@@ -127,6 +127,8 @@
 								class="form-control" /> <label class="form-label"
 								for="registerRepeatPassword">Repeat password</label>
 						</div>
+						
+						<!-- Dodati select opciju za vrstu usera -->
 
 						<!-- Checkbox -->
 						<div class="form-check d-flex justify-content-center mb-4">
