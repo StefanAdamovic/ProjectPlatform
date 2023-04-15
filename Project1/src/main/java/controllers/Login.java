@@ -84,7 +84,7 @@ public class Login extends HttpServlet {
 					    request.getRequestDispatcher("login.jsp").forward(request, response);
 							
 						}else {
-							signUpErrorMsg = "* Password and PasswordRetype doesnt match!";
+							signUpErrorMsg += "* Password and PasswordRetype doesnt match!";
 							request.setAttribute("signUpErrorMsg", signUpErrorMsg);
 							request.getRequestDispatcher("login.jsp").forward(request, response);
 						}

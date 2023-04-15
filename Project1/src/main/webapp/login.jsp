@@ -86,9 +86,9 @@
 					</form>
 					<!------------------ </FORM> ------------------------>
 					<br>
-					<% String succMsg = (String)request.getAttribute("signUpSuccess"); %>
+					
 					${requestScope.errorMsg}
-					${requestScope.signUpSuccess}
+					${requestScope.signUpSuccess} 
 				</div>
 
 				<div class="tab-pane fade" id="pills-register" role="tabpanel"
@@ -143,7 +143,7 @@
 					</form>
 					<!-- ---------------- </FORM> ------------------------->
 					${requestScope.signUpErrorMsg}
-					${requestScope.signUpSuccess}
+					${requestScope.signUpSuccess} 
 					
 				</div>
 			</div>
