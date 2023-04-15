@@ -82,44 +82,48 @@
 						</div>
 
 						<!-- Submit button -->
-						<button type="submit" name="action" value="login" class="btn btn-primary btn-block mb-4">Sign
-							in</button>
+						<button type="submit" name="action" value="login" class="btn btn-primary btn-block mb-4">Sign in</button>
 					</form>
 					<!------------------ </FORM> ------------------------>
-					
+					<br>
+					<% String succMsg = (String)request.getAttribute("signUpSuccess"); %>
+					${requestScope.errorMsg}
+					${requestScope.signUpSuccess}
 				</div>
 
 				<div class="tab-pane fade" id="pills-register" role="tabpanel"
 					aria-labelledby="tab-register">
-					<form method="get" action="SignUpController">
+					
+					<!-- ---------- REGISTER FORM ---------------->
+					<form method="post" action="login">
 
 						<!-- Name input -->
 						<div class="form-outline mb-4">
-							<input type="text" id="registerName" class="form-control" /> <label
+							<input type="text" name="registerName" id="registerName" class="form-control" /> <label
 								class="form-label" for="registerName">Name</label>
 						</div>
 
 						<!-- Username input -->
 						<div class="form-outline mb-4">
-							<input type="text" id="registerUsername" class="form-control" />
+							<input type="text" name="registerUsername" id="registerUsername" class="form-control" />
 							<label class="form-label" for="registerUsername">Username</label>
 						</div>
 
 						<!-- Email input -->
 						<div class="form-outline mb-4">
-							<input type="email" id="registerEmail" class="form-control" /> <label
+							<input type="email" name="registerEmail" id="registerEmail" class="form-control" /> <label
 								class="form-label" for="registerEmail">Email</label>
 						</div>
 
 						<!-- Password input -->
 						<div class="form-outline mb-4">
-							<input type="password" id="registerPassword" class="form-control" />
+							<input type="password" name="registerPassword" id="registerPassword" class="form-control" />
 							<label class="form-label" for="registerPassword">Password</label>
 						</div>
 
 						<!-- Repeat Password input -->
 						<div class="form-outline mb-4">
-							<input type="password" id="registerRepeatPassword"
+							<input type="password" name="registerPasswordRepeat" id="registerRepeatPassword"
 								class="form-control" /> <label class="form-label"
 								for="registerRepeatPassword">Repeat password</label>
 						</div>
@@ -134,9 +138,13 @@
 						</div>
 
 						<!-- Submit button -->
-						<button type="submit" name="action" value="register" class="btn btn-primary btn-block mb-3">Register
+						<button type="submit" name="action" value="signUp" class="btn btn-primary btn-block mb-3">Register
 							</button>
 					</form>
+					<!-- ---------------- </FORM> ------------------------->
+					${requestScope.signUpErrorMsg}
+					${requestScope.signUpSuccess}
+					
 				</div>
 			</div>
 		</div>

@@ -15,6 +15,7 @@ Web strana firme
 <a href="login.jsp">Login</a>
 <br>
 <a href="signup.jsp">Sign Up</a>
-
+<br>
+${requestScope.successMsg}
 </body>
 </html>

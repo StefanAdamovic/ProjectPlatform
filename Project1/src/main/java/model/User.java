@@ -1,6 +1,6 @@
 package model;
 
-public abstract class User {
+public class User {
 
 	private static int numOfUsers = 0;
 
@@ -43,7 +43,7 @@ public abstract class User {
 	}
 
 	public User(String email, String password, String userName) {
-		super();
+		
 		this.id = ++numOfUsers;
 		this.email = email;
 		this.password = password;
