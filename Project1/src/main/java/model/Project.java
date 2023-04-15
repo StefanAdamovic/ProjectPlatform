@@ -33,9 +33,11 @@ public class Project implements ITask, IUser {
 	}
 
 	@Override
-	public void addUser(User user) {
-		users.add(user);
+	public void addUser(String email, String password, String username) {
+		// TODO Auto-generated method stub
+		
 	}
+	
 
 	public String getCity() {
 		return city;
@@ -94,5 +96,7 @@ public class Project implements ITask, IUser {
 		// TODO Auto-generated method stub
 
 	}
+
+	
 
 }

@@ -16,6 +16,7 @@ Web strana firme
 <br>
 <a href="signup.jsp">Sign Up</a>
 <br>
-${requestScope.successMsg}
+${requestScope.successMsg}	
+<h2>Kodirati ovu index stranu koja ide nakon logina (za odredjenenog usera odredjen index.jsp?) pa tek onda backend za index.jsp i njene podstrane</h2>
 </body>
 </html>

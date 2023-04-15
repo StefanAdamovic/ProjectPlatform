@@ -2,6 +2,6 @@ package model;
 
 public interface IUser {
 
-	void addUser(User user);
+	void addUser(String email, String password, String username);
 
 }
