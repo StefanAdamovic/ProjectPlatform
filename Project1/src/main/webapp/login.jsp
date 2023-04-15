@@ -37,20 +37,10 @@
 					class="nav-link active" id="tab-login" data-mdb-toggle="pill"
 					href="#pills-login" role="tab" aria-controls="pills-login"
 					aria-selected="true">Login</a></li>
-				<li class="nav-item" role="presentation"><a class="nav-link"
-					id="tab-register" data-mdb-toggle="pill" href="#pills-register"
-					role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
-				</li>
 			</ul>
-			<!-- Pills navs -->
 
-			<!-- Pills content -->
-			<div class="tab-content">
-				<div class="tab-pane fade show active" id="pills-login"
-					role="tabpanel" aria-labelledby="tab-login">
-					
-					<!---------------------  FORM  ------------------------->
-					<form method="get" action="login">
+				<!---------------------  FORM  ------------------------->
+					<form method="post" action="login">
 
 						<!-- Email input -->
 						<div class="form-outline mb-4">
@@ -82,73 +72,18 @@
 						</div>
 
 						<!-- Submit button -->
-						<button type="submit" name="action" value="login" class="btn btn-primary btn-block mb-4">Sign in</button>
+						<button type="submit" name="action" value="login" class="btn btn-primary btn-block mb-4">LOG IN</button>
 					</form>
+					
+					<div>
+						<a href="signUp.jsp" style="text-decoration: underline;">Not registered user? Go to REGISTER page.</a>
+					</div>
+					
 					<!------------------ </FORM> ------------------------>
 					<br>
 					
-					${requestScope.errorMsg}
-					${requestScope.signUpSuccess} 
-				</div>
-
-				<div class="tab-pane fade" id="pills-register" role="tabpanel"
-					aria-labelledby="tab-register">
-					
-					<!-- ---------- REGISTER FORM ---------------->
-					<form method="get" action="login">
-
-						<!-- Name input -->
-						<div class="form-outline mb-4">
-							<input type="text" name="registerName" id="registerName" class="form-control" /> <label
-								class="form-label" for="registerName">Name</label>
-						</div>
-
-						<!-- Username input -->
-						<div class="form-outline mb-4">
-							<input type="text" name="registerUsername" id="registerUsername" class="form-control" />
-							<label class="form-label" for="registerUsername">Username</label>
-						</div>
-
-						<!-- Email input -->
-						<div class="form-outline mb-4">
-							<input type="email" name="registerEmail" id="registerEmail" class="form-control" /> <label
-								class="form-label" for="registerEmail">Email</label>
-						</div>
-
-						<!-- Password input -->
-						<div class="form-outline mb-4">
-							<input type="password" name="registerPassword" id="registerPassword" class="form-control" />
-							<label class="form-label" for="registerPassword">Password</label>
-						</div>
-
-						<!-- Repeat Password input -->
-						<div class="form-outline mb-4">
-							<input type="password" name="registerPasswordRepeat" id="registerRepeatPassword"
-								class="form-control" /> <label class="form-label"
-								for="registerRepeatPassword">Repeat password</label>
-						</div>
-						
-						<!-- Dodati select opciju za vrstu usera -->
-
-						<!-- Checkbox -->
-						<div class="form-check d-flex justify-content-center mb-4">
-							<input class="form-check-input me-2" type="checkbox" value=""
-								id="registerCheck" checked
-								aria-describedby="registerCheckHelpText" /> <label
-								class="form-check-label" for="registerCheck"> I have
-								read and agree to the terms </label>
-						</div>
-
-						<!-- Submit button -->
-						<button type="submit" name="action" value="signUp" class="btn btn-primary btn-block mb-3">Register
-							</button>
-					</form>
-					<!-- ---------------- </FORM> ------------------------->
-					${requestScope.signUpErrorMsg}
-					${requestScope.signUpSuccess} 
-					
-				</div>
-			</div>
+					<span style="color: red; font-size: 16px;">${requestScope.errorMsg}</span>
+					<span style="color: green; font-size: 16px;">${requestScope.signUpSuccess}</span> 
 		</div>
 	</div>
 	<!-- Pills content -->
@@ -159,3 +94,6 @@
 
 </body>
 </html>
+
+
+

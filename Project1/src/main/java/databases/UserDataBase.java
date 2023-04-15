@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import model.AdminUser;
-import model.Architect;
+import model.JobTypes;
 import model.User;
+
 
 public class UserDataBase {
 
 	// Simulacija baze korisnika
 	private static ArrayList<User> users = new ArrayList<User>(Arrays.asList(AdminUser.getInstance(),
-			new Architect("marko.gavrilovic@gmail.com", "123", "markogavrilovic"),
-			new Architect("stef.adamovic@gmail.com", "321", "stefanadamovic")));
+			new User("marko.gavrilovic@gmail.com", "123", "markogavrilovic", "Marko", JobTypes.TEHNICIAN),
+			new User("stef.adamovic@gmail.com", "321","stefanadamovic", "Stefan", JobTypes.ARCHITECT)));
 
 	// Provera da li je korisnik registrovan
 	// ne razumem zasto ne mogu da proverim ovom metodom uslov u servletu pa sam
@@ -27,8 +28,8 @@ public class UserDataBase {
 	}
 
 	// Dodavanje korisnika u bazu korisnika
-	public static void addUser(String email, String password, String username) {
-		users.add(new User(email, password, username));
+	public static void addUser(String email, String password, String username, String name, JobTypes position) {
+		users.add(new User(email, password, username, name, position));
 	}
 
 	// Dohvatanje baze korisnika

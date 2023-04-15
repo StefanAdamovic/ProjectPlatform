@@ -8,15 +8,15 @@ public class AdminUser extends User {
 	public static AdminUser getInstance() {
 		if (count == 0) {
 			count++;
-			admin = new AdminUser("admin", "admin", "admin");
+			admin = new AdminUser("admin", "admin", "admin", "admin", JobTypes.PROJECT_MANAGER );
 			return admin;
 		} else {
 			return admin;
 		}
 	}
 
-	private AdminUser(String email, String password, String userName) {
-		super(email, password, userName);
+	private AdminUser(String email, String password, String userName, String name, JobTypes position) {
+		super(email, password, userName, name, position);
 	}
 
 	public void createUser(User x) {

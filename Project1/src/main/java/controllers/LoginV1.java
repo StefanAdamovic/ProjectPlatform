@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import databases.UserDataBase;
+import model.JobTypes;
 
 @WebServlet("/loginV1")
 public class LoginV1 extends HttpServlet {
@@ -60,6 +61,7 @@ public class LoginV1 extends HttpServlet {
 
 		String name = request.getParameter("registerName");
 		String username = request.getParameter("registerUsername");
+		JobTypes position = JobTypes.valueOf(request.getParameter("jobType"));
 		String email = request.getParameter("registerEmail");
 		String password = request.getParameter("registerPassword");
 		String repeatPassword = request.getParameter("registerPasswordRepeat");
@@ -72,7 +74,7 @@ public class LoginV1 extends HttpServlet {
 						&& !email.isEmpty() && password != null && !password.isEmpty() && repeatPassword != null
 						&& !repeatPassword.isEmpty()) {
 					if (password.equals(repeatPassword)) {
-						UserDataBase.addUser(email, password, username);
+						UserDataBase.addUser(email, password, username, name, position);
 						request.setAttribute("signUpSuccess", "Successfully registered!");
 						request.getRequestDispatcher("login.jsp").forward(request, response);
 

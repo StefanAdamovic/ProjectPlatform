@@ -8,6 +8,24 @@ public class User {
 	private String email;
 	private String password;
 	private String userName;
+	private String name;
+	private JobTypes position;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public JobTypes getPosition() {
+		return position;
+	}
+
+	public void setPosition(JobTypes position) {
+		this.position = position;
+	}
 
 	public int getId() {
 		return id;
@@ -37,17 +55,22 @@ public class User {
 		this.userName = userName;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", userName=" + userName + "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", userName=" + userName + ", name="
+				+ name + ", position=" + position + "]";
 	}
 
-	public User(String email, String password, String userName) {
+	public User(String email, String password, String userName, String name, JobTypes position) {
 		
 		this.id = ++numOfUsers;
 		this.email = email;
 		this.password = password;
 		this.userName = userName;
+		this.name = name;
+		this.position = position;
 	}
 
 	public User() {

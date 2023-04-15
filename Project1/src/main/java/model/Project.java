@@ -33,8 +33,8 @@ public class Project implements ITask, IUser {
 	}
 
 	@Override
-	public void addUser(String email, String password, String username) {
-		users.add(new User(email, password, username));
+	public void addUser(String email, String password, String username, String name, JobTypes position) {
+		users.add(new User(email, password, username, name, position));
 		
 	}
 	
