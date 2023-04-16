@@ -34,12 +34,6 @@ public class Login extends HttpServlet {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 
-		if (!action.equals("login")) {
-			errorMsg += "Action Error!";
-			request.setAttribute("errorMsg", errorMsg);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
-
 		if (!Validator.checkUserName(username) && !Validator.checkPassword(password)) {
 			errorMsg += "* Must login with both username and password!";
 			request.setAttribute("errorMsg", errorMsg);
