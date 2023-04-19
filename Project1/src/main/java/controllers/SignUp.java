@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAO;
 import databases.UserDataBase;
 import model.JobTypes;
 import validators.Validator;
@@ -30,7 +31,9 @@ public class SignUp extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
+		
 		//doGet(request, response);
 		String action = request.getParameter("action");
 		String name = request.getParameter("registerName");
@@ -42,13 +45,24 @@ public class SignUp extends HttpServlet {
 		String signUpErrorMsg = "";
 
 		if (action != null) {
+			
 			if (Validator.checkName(name) && Validator.checkUserName(username) && Validator.checkEmail(email) && 
-					Validator.checkPassword(password) && Validator.checkPasswordRepeat(repeatPassword)) {
+				Validator.checkPassword(password) && Validator.checkPasswordRepeat(repeatPassword)) {
 				
 				if (password.equals(repeatPassword)) {
-					UserDataBase.addUser(email, password, username, name, position);
-					request.setAttribute("signUpSuccess", "Successfully registered! Now you can LOG IN using same credentials!");
-					request.getRequestDispatcher("login.jsp").forward(request, response);
+					DAO newUser = new DAO();
+					if (!newUser.alreadyRegistered(username, password)) {
+						
+						newUser.registerNewUser(name, username, email, password, position);
+						request.setAttribute("signUpSuccess", "Successfully registered! Now you can LOG IN using same credentials!");
+						request.getRequestDispatcher("login.jsp").forward(request, response);
+						
+					}else {
+						signUpErrorMsg += "* You have already registered with this username and password!";
+						request.setAttribute("signUpErrorMsg", signUpErrorMsg);
+						request.getRequestDispatcher("signUp.jsp").forward(request, response);
+					}
+			
 				} else {
 					signUpErrorMsg += "* Password and PasswordRetype doesnt match!";
 					request.setAttribute("signUpErrorMsg", signUpErrorMsg);

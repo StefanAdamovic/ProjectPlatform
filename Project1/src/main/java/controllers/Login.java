@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.DAO;
 import databases.UserDataBase;
 import validators.Validator;
 
@@ -22,7 +24,8 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		DAO user = new DAO();
+		
 		String action = request.getParameter("action");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -40,7 +43,7 @@ public class Login extends HttpServlet {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 
-		if (!UserDataBase.isRegistered(username, password)) {
+		if (!user.alreadyRegistered(username, password)) {
 			errorMsg += "* No user with entered username and password!";
 			request.setAttribute("errorMsg", errorMsg);
 			request.getRequestDispatcher("login.jsp").forward(request, response);

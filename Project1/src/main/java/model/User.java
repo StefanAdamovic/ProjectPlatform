@@ -27,6 +27,10 @@ public class User {
 		this.position = position;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -63,7 +67,7 @@ public class User {
 				+ name + ", position=" + position + "]";
 	}
 
-	public User(String email, String password, String userName, String name, JobTypes position) {
+	public User(int id, String email, String password, String userName, String name, JobTypes position) {
 		
 		this.id = ++numOfUsers;
 		this.email = email;
