@@ -20,7 +20,7 @@ public class DAO {
 
 	// MySQL zahtevi
 	
-	private static String SELECT_USER = "SELECT * FROM `registered_users` WHERE `email`= ?";
+	private static String SELECT_USER = "SELECT * FROM `registered_users` WHERE `userName`= ? AND `password`= ?";
 	private static String INSERT_USER = "INSERT INTO `registered_users` (id, name, userName, email, password, position) "
 	        							+"VALUES (NULL, ?, ?, ?, ?, ?)";
 
@@ -73,7 +73,7 @@ public class DAO {
 	}
 	/////////////////////////////////////////////////////////////////////////////
 	
-	public boolean alreadyRegistered(String username){
+	public boolean alreadyRegistered(String email, String password){
 		
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -82,7 +82,8 @@ public class DAO {
 			con = ds.getConnection();
 			pstm = con.prepareStatement(SELECT_USER);
 
-			pstm.setString(1, username);
+			pstm.setString(1, email);
+			pstm.setString(2, password);
 			
 			ResultSet rs = pstm.executeQuery();
 		        

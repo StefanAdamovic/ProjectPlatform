@@ -51,7 +51,7 @@ public class SignUp extends HttpServlet {
 				
 				if (password.equals(repeatPassword)) {
 					DAO newUser = new DAO();
-					if (newUser.alreadyRegistered(username)) {
+					if (!newUser.alreadyRegistered(email, password)) {
 						
 						newUser.registerNewUser(name, username, email, password, position);
 						request.setAttribute("signUpSuccess", "Successfully registered! Now you can LOG IN using same credentials!");

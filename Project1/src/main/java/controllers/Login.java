@@ -43,13 +43,13 @@ public class Login extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 
-			else if (user.alreadyRegistered(username)) {
+			else if (!user.alreadyRegistered(username, password)) {
 				errorMsg += "* No user with entered username and password!";
 				request.setAttribute("errorMsg", errorMsg);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 			request.setAttribute("successMsg", "Log in success!");
-			response.sendRedirect("index.jsp");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 
