@@ -51,7 +51,7 @@ public class SignUp extends HttpServlet {
 				
 				if (password.equals(repeatPassword)) {
 					DAO newUser = new DAO();
-					if (!newUser.alreadyRegistered(username, password)) {
+					if (newUser.alreadyRegistered(username)) {
 						
 						newUser.registerNewUser(name, username, email, password, position);
 						request.setAttribute("signUpSuccess", "Successfully registered! Now you can LOG IN using same credentials!");
@@ -60,7 +60,7 @@ public class SignUp extends HttpServlet {
 					}else {
 						signUpErrorMsg += "* You have already registered with this username and password!";
 						request.setAttribute("signUpErrorMsg", signUpErrorMsg);
-						request.getRequestDispatcher("signUp.jsp").forward(request, response);
+						request.getRequestDispatcher("login.jsp").forward(request, response);
 					}
 			
 				} else {

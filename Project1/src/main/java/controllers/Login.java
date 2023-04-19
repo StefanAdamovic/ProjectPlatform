@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
 
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		DAO user = new DAO();
-		
+
 		String action = request.getParameter("action");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -35,29 +35,29 @@ public class Login extends HttpServlet {
 			errorMsg += "Action Error!";
 			request.setAttribute("errorMsg", errorMsg);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
+		}else {
 
-		if (!Validator.checkUserName(username) && !Validator.checkPassword(password)) {
-			errorMsg += "* Must login with both username and password!";
-			request.setAttribute("errorMsg", errorMsg);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
+			if (!Validator.checkUserName(username) && !Validator.checkPassword(password)) {
+				errorMsg += "* Must login with both username and password!";
+				request.setAttribute("errorMsg", errorMsg);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
 
-		if (!user.alreadyRegistered(username, password)) {
-			errorMsg += "* No user with entered username and password!";
-			request.setAttribute("errorMsg", errorMsg);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			else if (user.alreadyRegistered(username)) {
+				errorMsg += "* No user with entered username and password!";
+				request.setAttribute("errorMsg", errorMsg);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+			request.setAttribute("successMsg", "Log in success!");
+			response.sendRedirect("index.jsp");
 		}
-
-		request.setAttribute("successMsg", "Log in success!");
-		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		doGet(request, response);
-		
+
 	}
 
 }

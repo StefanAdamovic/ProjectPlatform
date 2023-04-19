@@ -83,6 +83,7 @@
 					<br>
 					
 					<span style="color: red; font-size: 16px;">${requestScope.errorMsg}</span>
+					<span style="color: red; font-size: 16px;">${requestScope.signUpErrorMsg}</span>
 					<span style="color: green; font-size: 16px;">${requestScope.signUpSuccess}</span> 
 		</div>
 	</div>
